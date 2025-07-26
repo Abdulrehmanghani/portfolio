@@ -226,7 +226,7 @@ function HeroSection() {
               </h1>
               <div className="space-y-4">
                 <p className="text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 font-medium">
-                  Senior Machine Learning Engineer | GenAI Specialist | TinyML Expert
+                  Machine Learning | Computer Vision| GenAI | TinyML Expert
                 </p>
                 <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl">
                   6+ years of experience building production-grade AI systems. Specialized in computer vision, 
@@ -665,15 +665,15 @@ function ProjectsSection() {
   const { isDark } = useContext(ThemeContext);
 
   const projects = [
-    {
-      title: "TinyML Edge Deployment",
-      description: "Optimized deep learning models for deployment on resource-constrained edge devices using advanced quantization and pruning techniques. Achieved 90% model size reduction while maintaining accuracy.",
-      tech: ["TensorFlow Lite", "Edge TPU", "Quantization", "Pruning", "ARM Cortex"],
-      icon: <Cpu />,
-      category: "Edge AI",
-      media: "/project-media/tinyml-demo.gif", // Placeholder for future GIF
-      mediaType: "gif"
-    },
+   {
+  title: "Accelerate the inference at edge",
+  description: "Accelerated deep learning inference for resource-constrained edge devices using Python workflows. Leveraged advanced quantization and pruning to achieve up to 90% model size reduction with minimal loss in accuracy. Integrated and deployed models on ARM Cortex and Edge TPU hardware for real-time, efficient Edge AI.",
+  tech: ["Python", "Intel OpenVINO", "Edge TPU", "Quantization", "Pruning", "ARM Cortex"],
+  icon: <Cpu />,
+  category: "Edge AI",
+  media: "/project-media/output.gif", // Placeholder for future GIF
+  mediaType: "gif"
+},
     {
       title: "GPT-4 Medical Record Summarization",
       description: "Developed an intelligent healthcare automation system that processes and summarizes medical records using GPT-4. Reduced manual processing time by 80% for healthcare providers.",
