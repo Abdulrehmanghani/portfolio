@@ -9,6 +9,7 @@ import {
   Moon,
   Sun,
   Download,
+  Camera,
   Send,
   Code,
   Brain,
@@ -735,14 +736,14 @@ function ProjectsSection() {
       repoUrl: "https://github.com/Abdulrehmanghani/legal-docs-automation"
     },
     {
-    "title": "Edge-Based Person Re-Identification System",
-    "description": "Developed and deployed a real-time person re-identification system using Raspberry Pi and Intel Neural Compute Stick 2. Integrates deep learning models for feature extraction and matching at the edge, enabling efficient and low-latency identification for surveillance and security applications.",
-    "tech": ["Raspberry Pi", "Intel NCS2", "Deep Learning", "OpenVINO", "Computer Vision"],
-    "icon": "<Camera />",
-    "category": "Edge AI",
-    "gradient": "from-green-500 to-teal-500",
-    "gif": "public/project-media/ReIdentification_retail.gif", // replace with an actual GIF path relevant to the project
-    "repoUrl": "https://github.com/dlision/Re-Identification-with-RaspberryPi-and-Neural-Comput-Stick-2"
+      title: "Edge-Based Person Re-Identification System",
+      description: "Developed and deployed a real-time person re-identification system using Raspberry Pi and Intel Neural Compute Stick 2. Integrates deep learning models for feature extraction and matching at the edge, enabling efficient and low-latency identification for surveillance and security applications.",
+      tech: ["Raspberry Pi", "Intel NCS2", "Deep Learning", "OpenVINO", "Computer Vision"],
+      icon: <Camera />,
+      category: "Edge AI",
+      gradient: "from-green-500 to-teal-500",
+      gif: "public/project-media/ReIdentification_retail.gif", // replace with an actual GIF path relevant to the project
+      repoUrl: "https://github.com/dlision/Re-Identification-with-RaspberryPi-and-Neural-Comput-Stick-2"
     },
     {
       title: "YOLO/DETR Sports Analytics",
