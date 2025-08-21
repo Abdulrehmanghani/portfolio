@@ -123,7 +123,7 @@ function Navigation({ activeSection, scrollToSection, isMenuOpen, setIsMenuOpen 
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
       isDark ? 'bg-gray-900/90 backdrop-blur-md border-gray-700/50' : 'bg-white/90 backdrop-blur-md border-gray-200/50'
     } border-b shadow-lg`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-16 sm:px-20 lg:px-24">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <button
@@ -237,7 +237,7 @@ function HeroSection({ scrollToSection }: { scrollToSection: (sectionId: string)
         }`}></div>
       </div>
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="relative z-10 w-full px-16 sm:px-20 lg:px-24">
         <div className="text-center mb-16">
           {/* Profile Image - Centered and Enlarged */}
           <div className="flex justify-center mb-12">
@@ -255,7 +255,7 @@ function HeroSection({ scrollToSection }: { scrollToSection: (sectionId: string)
           </div>
 
           {/* Main Content */}
-          <div className="space-y-8 max-w-4xl mx-auto">
+          <div className="space-y-8">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-fade-in leading-tight">
               Abdul Rehman
             </h1>
@@ -264,7 +264,7 @@ function HeroSection({ scrollToSection }: { scrollToSection: (sectionId: string)
               <p className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-gray-700 to-gray-900 dark:from-gray-200 dark:to-gray-400 bg-clip-text text-transparent">
                 Machine Learning Engineer & AI Specialist
               </p>
-              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
                 Transforming complex data into intelligent solutions. Specializing in Computer Vision, 
                 Generative AI, and Edge Computing with <span className="font-semibold text-indigo-600 dark:text-indigo-400">6+ years</span> of production experience.
               </p>
@@ -294,14 +294,13 @@ function HeroSection({ scrollToSection }: { scrollToSection: (sectionId: string)
         </div>
 
         {/* Contact Cards - Single Row, Enhanced Design */}
-        <div className="mt-20">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            <ContactCard icon={<Mail />} label="Email" value="abdulrehmanghani197@gmail.com" href="mailto:abdulrehmanghani197@gmail.com" compact />
-            <ContactCard icon={<Phone />} label="Phone" value="+92-341-7528497" href="tel:+923417528497" compact />
-            <ContactCard icon={<MapPin />} label="Location" value="Islamabad, Pakistan" compact />
-            <ContactCard icon={<Linkedin />} label="LinkedIn" value="linkedin.com/in/abdulrehman197" href="https://linkedin.com/in/abdulrehman197" compact />
-            <ContactCard icon={<Github />} label="GitHub" value="github.com/Abdulrehmanghani" href="https://github.com/Abdulrehmanghani" compact />
-            <ContactCard icon={<ExternalLink />} label="Portfolio" value="View Portfolio" href="https://abdulrehmanghani.site" compact />
+        <div className="mt-20 px-16 sm:px-20 lg:px-28">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <ContactCard icon={<Mail />} value="abdulrehmanghani197@gmail.com" href="mailto:abdulrehmanghani197@gmail.com" compact />
+            <ContactCard icon={<Phone />} value="+92-341-7528497" href="tel:+923417528497" compact />
+            <ContactCard icon={<MapPin />} value="Islamabad, Pakistan" compact />
+            <ContactCard icon={<Linkedin />} value="linkedin.com/in/abdulrehman197" href="https://linkedin.com/in/abdulrehman197" compact />
+            <ContactCard icon={<Github />} value="github.com/Abdulrehmanghani" href="https://github.com/Abdulrehmanghani" compact />
           </div>
         </div>
       </div>
@@ -309,9 +308,8 @@ function HeroSection({ scrollToSection }: { scrollToSection: (sectionId: string)
   );
 }
 
-function ContactCard({ icon, label, value, href, compact }: { 
+function ContactCard({ icon, value, href, compact }: { 
   icon: React.ReactNode; 
-  label: string; 
   value: string; 
   href?: string; 
   compact?: boolean; 
@@ -324,22 +322,13 @@ function ContactCard({ icon, label, value, href, compact }: {
         ? 'bg-gray-800/50 border-gray-700/50 hover:bg-gray-800 backdrop-blur-sm' 
         : 'bg-white/70 border-gray-200/50 hover:bg-white backdrop-blur-sm'
     }`}>
-      <div className="flex flex-col items-center text-center space-y-3">
-        <div className="p-3 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg">
-          {cloneElement(icon as ReactElement, { size: 18 })}
+      <div className="flex items-center space-x-3">
+        <div className="p-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg flex-shrink-0">
+          {cloneElement(icon as ReactElement, { size: 16 })}
         </div>
-        <div className="min-h-0 flex-1">
-          <p className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">
-            {label}
-          </p>
-          <p className="text-xs font-semibold text-gray-900 dark:text-white break-words leading-tight">
-            {label === 'Email' ? 'Contact Email' :
-             label === 'Phone' ? 'Call Me' :
-             label === 'Location' ? 'Islamabad, PK' :
-             label === 'LinkedIn' ? 'Connect' :
-             label === 'GitHub' ? 'View Code' :
-             label === 'Portfolio' ? 'View Site' :
-             value}
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
+            {value}
           </p>
         </div>
       </div>
@@ -378,7 +367,7 @@ function AboutSection() {
 
   return (
     <section id="about" className={`py-20 ${isDark ? 'bg-gray-800' : 'bg-white'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-16 sm:px-20 lg:px-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
             About Me
@@ -387,7 +376,7 @@ function AboutSection() {
         </div>
 
         {/* Main About Content */}
-        <div className="max-w-4xl mx-auto text-center mb-16">
+        <div className="text-center mb-16">
           <p className="text-xl md:text-2xl leading-relaxed text-gray-700 dark:text-gray-300 mb-8">
             Senior Machine Learning Engineer with <span className="font-bold text-indigo-600 dark:text-indigo-400">6+ years of experience</span> 
             designing and deploying production-grade AI systems. Currently pursuing an M.S. in Artificial Intelligence at the 
@@ -503,7 +492,7 @@ function SkillsSection() {
 
   return (
     <section id="skills" className={`py-20 ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-16 sm:px-20 lg:px-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
             Skills & Technologies
@@ -628,7 +617,7 @@ function ExperienceSection() {
 
   return (
     <section id="experience" className={`py-20 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-16 sm:px-20 lg:px-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
             Professional Journey
@@ -710,7 +699,6 @@ function ProjectsSection() {
       icon: <Cpu />,
       category: "Edge AI",
       gradient: "from-emerald-500 to-teal-500",
-      featured: true,
       gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
       repoUrl: "https://github.com/Abdulrehmanghani/Accelerate-the-inference-at-edge/tree/main"
     },
@@ -721,9 +709,8 @@ function ProjectsSection() {
       icon: <Brain />,
       category: "Healthcare AI",
       gradient: "from-rose-500 to-pink-500",
-      featured: true,
-      gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
-      repoUrl: "https://github.com/Abdulrehmanghani/med-record-summarization"
+      // gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
+      repoStatus: "This project is not Open-source"
     },
     {
       title: "Legal Document Automation Pipeline",
@@ -732,8 +719,8 @@ function ProjectsSection() {
       icon: <Database />,
       category: "Legal Tech",
       gradient: "from-indigo-500 to-purple-500",
-      gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
-      repoUrl: "https://github.com/Abdulrehmanghani/legal-docs-automation"
+      // gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
+      repoStatus: "This project is not Open-source"
     },
     {
       title: "Edge-Based Person Re-Identification System",
@@ -746,24 +733,35 @@ function ProjectsSection() {
       repoUrl: "https://github.com/dlision/Re-Identification-with-RaspberryPi-and-Neural-Comput-Stick-2"
     },
     {
-      title: "YOLO/DETR Sports Analytics",
-      description: "Developed a real-time sports analytics application using advanced object detection models for player tracking, performance analysis, and strategic insights. Deployed for multiple sports teams.",
-      tech: ["YOLO", "DETR", "Computer Vision", "PyTorch", "OpenCV"],
+      title: "Multi-Camera Football Analytics Platform",
+      description: "Developed an advanced football analytics system leveraging 12 synchronized stadium cameras to provide real-time tactical and performance insights. YOLO/DETR were used for player, referee, and ball detection; a transformer-based model classified players into Team A or Team B; HRNet enabled player pose estimation and movement tracking; and FCHarDNet was applied for semantic ground segmentation to analyze pitch zones. The end-to-end pipeline was orchestrated with Apache Airflow and NVIDIA DeepStream, deployed on A100 GPUs with Triton Inference Server for high-throughput, low-latency inference. This platform delivers actionable insights for coaches, analysts, and sports teams in real time.",
+      tech: [
+        "YOLO",
+        "DETR",
+        "Transformer Models",
+        "HRNet",
+        "FCHarDNet",
+        "Apache Airflow",
+        "NVIDIA DeepStream",
+        "Triton Inference Server",
+        "PyTorch",
+        "A100 GPU"
+      ],
       icon: <Bot />,
       category: "Sports Tech",
       gradient: "from-orange-500 to-amber-500",
-      gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
-      repoUrl: "https://github.com/Abdulrehmanghani/sports-analytics"
+      // gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
+      repoStatus: "This project is not Open-source"
     },
     {
-      title: "NVIDIA DeepStream Video Analytics",
+      title: "NVIDIA DeepStream Video Analytics for face detection and recognition application",
       description: "Implemented high-performance video analytics pipeline using NVIDIA DeepStream SDK and TensorRT optimization. Processes multiple video streams simultaneously with sub-second latency.",
       tech: ["NVIDIA DeepStream", "TensorRT", "CUDA", "Jetson", "GStreamer"],
       icon: <Cpu />,
       category: "Video Analytics",
       gradient: "from-violet-500 to-purple-500",
-      gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
-      repoUrl: "https://github.com/Abdulrehmanghani/deepstream-analytics"
+      // gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
+      repoStatus: "This project is not Open-source"
     }
   ];
 
@@ -790,13 +788,13 @@ function ProjectsSection() {
 
   return (
     <section id="projects" className={`py-20 ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-16 sm:px-20 lg:px-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
-            Featured Projects
+            Projects
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full mb-6"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300">
             Innovative AI/ML solutions that solve real-world problems across various industries
           </p>
         </div>
@@ -807,18 +805,10 @@ function ProjectsSection() {
               key={index}
               className={`group rounded-2xl transition-all duration-500 hover:shadow-2xl hover:scale-105 hover:-translate-y-2 overflow-hidden ${
                 isDark ? 'bg-gray-900/50 border border-gray-700/50' : 'bg-white border border-gray-200/50'
-              } ${project.featured ? 'ring-2 ring-indigo-500/20' : ''}`}
+              }`}
             >
-              {project.featured && (
-                <div className="px-6 pt-4">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg">
-                    ⭐ Featured
-                  </span>
-                </div>
-              )}
-
               {/* GIF Media Preview */}
-              <div className={`relative h-48 bg-gradient-to-br ${project.gradient} overflow-hidden ${project.featured ? 'mt-2' : 'mt-0'}`}>
+              <div className={`relative h-48 bg-gradient-to-br ${project.gradient} overflow-hidden`}>
                 <img
                   src={project.gif}
                   alt={`${project.title} demo`}
@@ -864,17 +854,23 @@ function ProjectsSection() {
                   ))}
                 </div>
 
-                {/* GitHub Link */}
-                <a
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow hover:scale-105 transition-transform duration-200"
-                >
-                  <Github size={18} className="mr-2" />
-                  View Code on GitHub
-                  <ChevronRight size={16} className="ml-1" />
-                </a>
+                {/* Repository Status or GitHub Link */}
+                {project.repoStatus ? (
+                  <div className="text-sm text-gray-500 dark:text-gray-400 italic">
+                    {project.repoStatus}
+                  </div>
+                ) : project.repoUrl ? (
+                  <a
+                    href={project.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow hover:scale-105 transition-transform duration-200"
+                  >
+                    <Github size={18} className="mr-2" />
+                    View Code on GitHub
+                    <ChevronRight size={16} className="ml-1" />
+                  </a>
+                ) : null}
               </div>
             </div>
           ))}
@@ -946,7 +942,7 @@ function EducationSection() {
 
   return (
     <section id="education" className={`py-20 ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-16 sm:px-20 lg:px-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
             Education
@@ -1025,7 +1021,7 @@ function CertificationsSection() {
 
   return (
     <section id="certifications" className={`py-20 ${isDark ? 'bg-gray-800' : 'bg-white'}`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-16 sm:px-20 lg:px-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
             Certifications & Training
@@ -1089,13 +1085,13 @@ function ContactSection() {
 
   return (
     <section id="contact" className={`py-20 ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-16 sm:px-20 lg:px-24">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
             Let's Work Together
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full mb-6"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300">
             Ready to transform your ideas into intelligent solutions? Let's discuss your next AI/ML project
           </p>
         </div>
