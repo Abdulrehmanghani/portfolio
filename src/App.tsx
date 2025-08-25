@@ -294,25 +294,55 @@ function HeroSection({ scrollToSection }: { scrollToSection: (sectionId: string)
         </div>
 
         {/* Contact Cards - Single Row, Enhanced Design */}
-        <div className="mt-20 px-16 sm:px-20 lg:px-28">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            <ContactCard icon={<Mail />} value="abdulrehmanghani197@gmail.com" href="mailto:abdulrehmanghani197@gmail.com" compact />
-            <ContactCard icon={<Phone />} value="+92-341-7528497" href="tel:+923417528497" compact />
-            <ContactCard icon={<MapPin />} value="Islamabad, Pakistan" compact />
-            <ContactCard icon={<Linkedin />} value="linkedin.com/in/abdulrehman197" href="https://linkedin.com/in/abdulrehman197" compact />
-            <ContactCard icon={<Github />} value="github.com/Abdulrehmanghani" href="https://github.com/Abdulrehmanghani" compact />
+          <div className="mt-16 px-16 sm:px-20 lg:px-28">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              <ContactCard 
+                icon={<Mail />} 
+                value="abdulrehmanghani197@gmail.com" 
+                href="mailto:abdulrehmanghani197@gmail.com" 
+                compact 
+                className="hover:-translate-y-1 transition-transform duration-200"
+              />
+              <ContactCard 
+                icon={<Phone />} 
+                value="+92-341-7528497" 
+                href="tel:+923417528497" 
+                compact
+                className="hover:-translate-y-1 transition-transform duration-200"
+              />
+              <ContactCard 
+                icon={<MapPin />} 
+                value="Islamabad, Pakistan" 
+                compact
+                className="hover:-translate-y-1 transition-transform duration-200"
+              />
+              <ContactCard 
+                icon={<Linkedin />} 
+                value="linkedin.com/in/abdulrehman197" 
+                href="https://linkedin.com/in/abdulrehman197" 
+                compact
+                className="hover:-translate-y-1 transition-transform duration-200"
+              />
+              <ContactCard 
+                icon={<Github />} 
+                value="github.com/Abdulrehmanghani" 
+                href="https://github.com/Abdulrehmanghani" 
+                compact
+                className="hover:-translate-y-1 transition-transform duration-200"
+              />
+            </div>
           </div>
-        </div>
       </div>
     </section>
   );
 }
 
-function ContactCard({ icon, value, href, compact }: { 
+function ContactCard({ icon, value, href, compact, className }: { 
   icon: React.ReactNode; 
   value: string; 
   href?: string; 
   compact?: boolean; 
+  className?: string;
 }) {
   const { isDark } = useContext(ThemeContext);
   
@@ -321,7 +351,7 @@ function ContactCard({ icon, value, href, compact }: {
       isDark 
         ? 'bg-gray-800/50 border-gray-700/50 hover:bg-gray-800 backdrop-blur-sm' 
         : 'bg-white/70 border-gray-200/50 hover:bg-white backdrop-blur-sm'
-    }`}>
+    } ${className ? className : ''}`}>
       <div className="flex items-center space-x-3">
         <div className="p-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg flex-shrink-0">
           {cloneElement(icon as ReactElement, { size: 16 })}
@@ -388,7 +418,7 @@ function AboutSection() {
             Specialized in <span className="font-semibold text-indigo-600 dark:text-indigo-400">computer vision, generative AI, and edge computing</span>. 
             Proven track record of delivering high-performance solutions for healthcare automation, legal document analysis, 
             sports analytics, and remote inference on embedded systems using 
-            <span className="font-semibold text-purple-600 dark:text-purple-400"> NVIDIA Jetson, CUDA, and TensorRT</span>.
+            <span className="font-semibold text-purple-600 dark:text-purple-400"> ChatGPT, Google Gemini, NVIDIA Jetson, CUDA, and TensorRT</span>.
           </p>
         </div>
 
@@ -417,10 +447,8 @@ function AboutSection() {
     </section>
   );
 }
-
 function SkillsSection() {
   const { isDark } = useContext(ThemeContext);
-
   const skillCategories = [
     {
       title: "Programming & Development",
@@ -434,61 +462,70 @@ function SkillsSection() {
       ]
     },
     {
-      title: "Machine Learning Frameworks",
+      title: "Machine Learning & AI",
       icon: <Brain />,
       gradient: "from-indigo-500 to-purple-500",
       skills: [
         { name: "PyTorch", level: 90 },
-        { name: "TensorFlow/Keras", level: 88 },
-        { name: "Scikit-learn", level: 85 },
-        { name: "OpenCV", level: 82 }
+        { name: "TensorFlow", level: 85 },
+        { name: "Scikit-learn", level: 80 },
+        { name: "OpenCV", level: 90 }
       ]
     },
     {
-      title: "AI/ML Specializations",
-      icon: <Bot />,
+      title: "Cloud & DevOps",
+      icon: <Cloud />,
       gradient: "from-blue-500 to-cyan-500",
       skills: [
-        { name: "Computer Vision", level: 92 },
-        { name: "Deep Learning", level: 90 },
-        { name: "Generative AI", level: 85 },
-        { name: "NLP", level: 80 }
-      ]
-    },
-    {
-      title: "Edge Computing & Optimization",
-      icon: <Cpu />,
-      gradient: "from-emerald-500 to-teal-500",
-      skills: [
-        { name: "NVIDIA Jetson", level: 88 },
-        { name: "TensorRT", level: 85 },
-        { name: "CUDA", level: 82 },
-        { name: "Model Optimization", level: 90 }
-      ]
-    },
-    {
-      title: "Cloud & MLOps",
-      icon: <Cloud />,
-      gradient: "from-orange-500 to-amber-500",
-      skills: [
-        { name: "Azure ML", level: 85 },
-        { name: "AWS", level: 75 },
+        { name: "Azure", level: 75 },
+        { name: "AWS", level: 70 },
         { name: "Docker", level: 80 },
-        { name: "Apache Airflow", level: 70 }
+        { name: "Kubernetes", level: 65 }
       ]
     },
     {
-      title: "AI Tools & Platforms",
+      title: "Edge & Embedded Systems",
+      icon: <Cpu />,
+      gradient: "from-green-500 to-teal-500",
+      skills: [
+        { name: "NVIDIA Jetson", level: 85 },
+        { name: "Raspberry Pi", level: 80 },
+        { name: "Edge TPU", level: 70 },
+        { name: "TinyML", level: 75 }
+      ]
+    },
+    {
+      title: "Data Engineering",
       icon: <Database />,
       gradient: "from-violet-500 to-purple-500",
       skills: [
-        { name: "NVIDIA DeepStream", level: 88 },
-        { name: "Triton Inference Server", level: 82 },
-        { name: "LangChain", level: 80 },
-        { name: "Weights & Biases", level: 75 }
+        { name: "SQL", level: 75 },
+        { name: "NoSQL", level: 70 },
+        { name: "ETL Pipelines", level: 80 },
+        { name: "Apache Airflow", level: 65 }
+      ]
+    },
+    {
+      title: "AI Product Development",
+      icon: <Bot />,
+      gradient: "from-orange-500 to-amber-500",
+      skills: [
+        { name: "MLOps", level: 75 },
+        { name: "FastAPI", level: 80 },
+        { name: "LangChain", level: 70 },
+        { name: "RAG", level: 65 }
       ]
     }
   ];
+
+  // Add this to your global CSS
+  const styles = `
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  `;
 
   return (
     <section id="skills" className={`py-20 ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
@@ -545,73 +582,91 @@ function SkillsSection() {
 function ExperienceSection() {
   const { isDark } = useContext(ThemeContext);
 
+  // Group roles by company
   const experiences = [
     {
       company: "AIVStudios",
-      role: "Computer Vision & ML Engineer",
-      period: "Jul 2024 – Present",
-      location: "Remote",
-      description: "Leading computer vision projects and developing advanced ML solutions for production environments.",
-      achievements: [
-        "Developing state-of-the-art computer vision models for real-time applications",
-        "Implementing edge AI solutions using NVIDIA Jetson and TensorRT optimization",
-        "Leading cross-functional teams in AI product development"
-      ],
       gradient: "from-indigo-500 to-purple-500",
-      current: true
+      roles: [
+        {
+          title: "Computer Vision & ML Engineer",
+          period: "Jul 2024 – Present",
+          location: "Remote",
+          description:
+            "Building advanced AI platforms for healthcare, legal, and video analytics with LLMs and high-performance computer vision solutions.",
+          achievements: [
+            "Developed an end-to-end medical record summarization platform using Python, Streamlit, and GPT-4, automating PDF extraction, data normalization, LLM-driven summarization, quality review, and secure cloud storage, improving efficiency and accuracy for healthcare and legal workflows.",
+            "Engineered an AI-powered legal document automation platform using Python, GPT-4, and Streamlit, reducing legal document review time by 99% and achieving 85% accuracy in automated decision-making for court case preparation, including predictive analysis of judicial arguments with 65% accuracy.",
+            "Boosted video analytics speed by 50% through multi-threading and deployed scalable AI services with NVIDIA DeepStream and Triton Inference Server, reducing latency from 200 ms to 100 ms using GStreamer with Python and C++."
+          ],
+          current: true
+        }
+      ]
     },
     {
       company: "LVisionAI",
-      role: "Machine Learning Engineer", 
-      period: "Dec 2022 – Jul 2024",
-      location: "Islamabad, Pakistan",
-      description: "Developed and deployed production-grade ML models focusing on computer vision and NLP applications.",
-      achievements: [
-        "Built and deployed YOLO/DETR models for sports analytics with 95% accuracy",
-        "Developed GPT-4 powered medical record summarization system",
-        "Implemented cloud-based forecasting using ARIMA and LSTM models on Azure",
-        "Created legal document automation pipeline using LLaMA and RAG architecture"
-      ],
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-cyan-500",
+      roles: [
+        {
+          title: "Machine Learning Engineer",
+          period: "Dec 2022 – Jul 2024",
+          location: "Islamabad, Pakistan",
+          description:
+            "Driving efficient AI and TinyML solutions for edge devices and cloud platforms to optimize cost, performance, and decision-making.",
+          achievements: [
+            "Established TinyML pipelines on low-cost devices (Jetson Nano, Raspberry Pi, OpenMV, etc.) for real-time video analytics, reducing cost and energy consumption by over 60% compared to CPU/GPU usage.",
+            "Applied Neural Architecture Search (NAS) to optimize models for target devices, reducing memory usage by 30%, improving compute efficiency by 40%, and accelerating inference speed by 2× for top performance on resource-constrained hardware.",
+            "Built scalable AI pipelines on Azure ML and Google Cloud for an advertising agency, analyzing product trends to improve ad campaign accuracy by 25% and decision-making efficiency by 35%.",
+          ]
+        }
+      ]
     },
     {
       company: "DLision",
-      role: "Software Developer",
-      period: "Mar 2021 – Nov 2022", 
-      location: "Islamabad, Pakistan",
-      description: "Built software solutions integrating AI/ML capabilities with focus on performance optimization.",
-      achievements: [
-        "Developed TinyML solutions for resource-constrained edge devices",
-        "Implemented model optimization techniques including quantization and pruning",
-        "Created end-to-end ML pipelines from data preprocessing to deployment"
-      ],
-      gradient: "from-emerald-500 to-teal-500"
-    },
-    {
-      company: "DLision",
-      role: "Trainee Developer",
-      period: "Jan 2020 – Feb 2021",
-      location: "Islamabad, Pakistan",
-      description: "Started as a trainee, learning development practices and contributing to various AI/ML projects.",
-      achievements: [
-        "Completed comprehensive training in machine learning fundamentals",
-        "Contributed to computer vision projects using OpenCV and TensorFlow",
-        "Developed proficiency in Python, C++, and deep learning frameworks"
-      ],
-      gradient: "from-orange-500 to-amber-500"
+      gradient: "from-emerald-500 to-teal-500",
+      roles: [
+        {
+          title: "Software Developer",
+          period: "Mar 2021 – Nov 2022",
+          location: "Islamabad, Pakistan",
+          description:
+            "Delivering high-performance AI solutions for video analytics, workflow automation, and business forecasting.",
+          achievements: [
+            "Trained and evaluated object detection models using NVIDIA DALI, DeepStream SDK, and CUDA Toolkit, reducing training time by 30% and improving inference speed by 40%, while automating 100% of task scheduling with Apache Airflow for streamlined deployment.",
+            "Implemented real-time video surveillance with Triton Inference Server and DeepStream, offloading inference to the server and reducing client-side cost by 50%.",
+            "Developed demand forecasting models (ARIMA, LSTM, Prophet) for a retail business using historical sales data, improving inventory planning accuracy by 35%."
+          ]
+        },
+        {
+          title: "Trainee Developer",
+          period: "Jan 2020 – Feb 2021",
+          location: "Islamabad, Pakistan",
+          description:
+            "Specializing in optimizing deep learning models and deploying efficient computer vision solutions on resource-constrained platforms.",
+          achievements: [
+            "Optimized deep learning models with OpenVINO and TensorFlow Lite, increasing inference speed by 40% on edge and low-power devices.",
+            "Contributed to dataset preparation using Labelme and Roboflow, trained PyTorch models for image classification and object detection (YOLO, DETR, MobileNet), and optimized deployment models for real-world applications.",
+          ],
+          extraSpacing: true // add spacing for trainee role
+        }
+      ]
     },
     {
       company: "Interloop Ltd.",
-      role: "Auditor",
-      period: "Jul 2019 – Dec 2019",
-      location: "Faisalabad, Pakistan", 
-      description: "Conducted auditing processes and quality assurance in manufacturing operations.",
-      achievements: [
-        "Performed quality audits ensuring compliance with international standards",
-        "Analyzed manufacturing data to identify process improvement opportunities",
-        "Developed analytical skills that later proved valuable in data science roles"
-      ],
-      gradient: "from-pink-500 to-rose-500"
+      gradient: "from-pink-500 to-rose-500",
+      roles: [
+        {
+          title: "Auditor",
+          period: "Jul 2019 – Dec 2019",
+          location: "Faisalabad, Pakistan",
+          description:
+            "Building data-driven solutions and web applications to enhance operational efficiency and user engagement",
+          achievements: [
+            "Analyzed data from industrial machines, improving operational efficiency by 15%.",
+            "Developed a web visitor tracking tool using HTML5, CSS, JavaScript, and PHP, increasing user engagement by 25%.",
+          ]
+        }
+      ]
     }
   ];
 
@@ -634,51 +689,63 @@ function ExperienceSection() {
               key={index}
               className={`group p-8 rounded-2xl transition-all duration-500 hover:shadow-2xl hover:scale-102 ${
                 isDark ? 'bg-gray-800/50 border border-gray-700/50' : 'bg-white border border-gray-200/50'
-              } ${exp.current ? 'ring-2 ring-indigo-500/30' : ''}`}
+              } ${exp.roles.some(r => r.current) ? 'ring-2 ring-indigo-500/30' : ''}`}
             >
-              {exp.current && (
-                <div className="flex justify-end mb-4">
-                  <span className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold rounded-full shadow-lg">
-                    Current Position
-                  </span>
+              {/* Company header */}
+              <div className="flex items-center mb-6">
+                <div className={`p-3 rounded-xl bg-gradient-to-r ${exp.gradient} text-white mr-4 shadow-lg`}>
+                  <Briefcase size={24} />
                 </div>
-              )}
-              
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-1">
-                  <div className="flex items-center mb-4">
-                    <div className={`p-3 rounded-xl bg-gradient-to-r ${exp.gradient} text-white mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <Briefcase size={24} />
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{exp.company}</h3>
+              </div>
+
+              {/* Roles with timeline */}
+              <div className="space-y-12 relative">
+                {exp.roles.map((role, rIndex) => (
+                  <div
+                    key={rIndex}
+                    className={`grid grid-cols-1 lg:grid-cols-3 gap-8 pl-8 relative ${role.extraSpacing ? 'mt-6' : ''}`}
+                  >
+                    {/* Timeline dot */}
+                    <span className={`absolute left-0 top-2 w-4 h-4 rounded-full bg-gradient-to-r ${exp.gradient}`}></span>
+                    {/* Timeline line (except last role) */}
+                    {rIndex !== exp.roles.length - 1 && (
+                      <span className="absolute left-[7px] top-6 w-0.5 h-full bg-gray-300 dark:bg-gray-600"></span>
+                    )}
+
+                    {/* Left column */}
+                    <div className="lg:col-span-1">
+                      <p className="text-lg font-semibold text-indigo-600 dark:text-indigo-400 mb-2">{role.title}</p>
+                      {role.current && (
+                        <span className="px-2 py-0.5 text-xs bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full">
+                          Current
+                        </span>
+                      )}
+                      <div className="flex items-center text-gray-500 dark:text-gray-400 mb-2">
+                        <Calendar size={16} className="mr-2" />
+                        <span className="text-sm font-medium">{role.period}</span>
+                      </div>
+                      <div className="flex items-center text-gray-500 dark:text-gray-400">
+                        <MapPin size={16} className="mr-2" />
+                        <span className="text-sm font-medium">{role.location}</span>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">{exp.company}</h3>
+
+                    {/* Right column */}
+                    <div className="lg:col-span-2">
+                      <p className="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed">{role.description}</p>
+                      <h4 className="font-bold mb-4 text-gray-800 dark:text-gray-200 text-lg">Key Achievements:</h4>
+                      <ul className="space-y-3">
+                        {role.achievements.map((achievement, achIndex) => (
+                          <li key={achIndex} className="flex items-start space-x-3 group/item">
+                            <div className={`w-2 h-2 bg-gradient-to-r ${exp.gradient} rounded-full mt-2 flex-shrink-0`}></div>
+                            <span className="text-gray-600 dark:text-gray-300 leading-relaxed">{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-                  <p className="text-lg font-semibold text-indigo-600 dark:text-indigo-400 mb-3">{exp.role}</p>
-                  <div className="flex items-center text-gray-500 dark:text-gray-400 mb-2">
-                    <Calendar size={16} className="mr-2" />
-                    <span className="text-sm font-medium">{exp.period}</span>
-                  </div>
-                  <div className="flex items-center text-gray-500 dark:text-gray-400">
-                    <MapPin size={16} className="mr-2" />
-                    <span className="text-sm font-medium">{exp.location}</span>
-                  </div>
-                </div>
-                
-                <div className="lg:col-span-2">
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed">{exp.description}</p>
-                  <div>
-                    <h4 className="font-bold mb-4 text-gray-800 dark:text-gray-200 text-lg">Key Achievements:</h4>
-                    <ul className="space-y-3">
-                      {exp.achievements.map((achievement, achIndex) => (
-                        <li key={achIndex} className="flex items-start space-x-3 group/item">
-                          <div className={`w-2 h-2 bg-gradient-to-r ${exp.gradient} rounded-full mt-2 flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300`}></div>
-                          <span className="text-gray-600 dark:text-gray-300 leading-relaxed">{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           ))}
@@ -687,6 +754,7 @@ function ExperienceSection() {
     </section>
   );
 }
+
 
 function ProjectsSection() {
   const { isDark } = useContext(ThemeContext);
@@ -699,7 +767,7 @@ function ProjectsSection() {
       icon: <Cpu />,
       category: "Edge AI",
       gradient: "from-emerald-500 to-teal-500",
-      gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
+      gif: "/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
       repoUrl: "https://github.com/Abdulrehmanghani/Accelerate-the-inference-at-edge/tree/main"
     },
     {
@@ -729,7 +797,7 @@ function ProjectsSection() {
       icon: <Camera />,
       category: "Edge AI",
       gradient: "from-green-500 to-teal-500",
-      gif: "public/project-media/ReIdentification_retail.gif", // replace with an actual GIF path relevant to the project
+      gif: "/project-media/ReIdentification_retail.gif", // replace with an actual GIF path relevant to the project
       repoUrl: "https://github.com/dlision/Re-Identification-with-RaspberryPi-and-Neural-Comput-Stick-2"
     },
     {
