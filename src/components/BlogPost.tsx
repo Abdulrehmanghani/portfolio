@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { 
   Calendar, 
   Clock, 
@@ -32,6 +32,11 @@ interface BlogPostProps {
 
 const BlogPost: React.FC<BlogPostProps> = ({ onBack }) => {
   const { isDark } = useContext(ThemeContext);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={`min-h-screen transition-colors duration-500 ${
@@ -468,12 +473,6 @@ const BlogPost: React.FC<BlogPostProps> = ({ onBack }) => {
                     ))}
                   </div>
                 </div>
-                
-                {stage.code && (
-                  <div className={`p-4 rounded-lg ${isDark ? 'bg-gray-800' : 'bg-gray-100'} border border-gray-300 dark:border-gray-600`}>
-                    <code className="text-sm font-mono text-indigo-600 dark:text-indigo-400">{stage.code}</code>
-                  </div>
-                )}
               </div>
             ))}
           </div>
