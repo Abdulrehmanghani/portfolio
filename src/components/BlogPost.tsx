@@ -85,7 +85,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ onBack }) => {
           <div className="flex flex-wrap justify-center items-center gap-6 text-gray-600 dark:text-gray-400">
             <div className="flex items-center space-x-2">
               <Calendar size={18} />
-              <span>August 26, 2025</span>
+              <span>August 20, 2025</span>
             </div>
             <div className="flex items-center space-x-2">
               <Clock size={18} />
@@ -191,6 +191,10 @@ const BlogPost: React.FC<BlogPostProps> = ({ onBack }) => {
               {/* <span className="text-2xl mr-3">📊</span> */}
               Platform Impact Metrics
             </h3>
+            <h4 className="text-xl mb-6 flex items-center">
+                Pipeline Efficiency: Converting hundreds of pages into structured summaries in minutes, not hours.
+            </h4>
+            
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
                 <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">99.2%</div>
@@ -339,11 +343,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ onBack }) => {
             <p className="text-sm text-gray-600 dark:text-gray-400 text-center italic mb-4">
               End-to-end workflow showing the 6-stage process transforming medical PDFs into AI-powered summaries
             </p>
-            <div className={`p-4 rounded-lg ${isDark ? 'bg-blue-900/20 border border-blue-700/50' : 'bg-blue-50 border border-blue-200/50'}`}>
-              <p className="text-sm text-center font-medium">
-                <span className="text-blue-600 dark:text-blue-400">Pipeline Efficiency:</span> Converting hundreds of pages into structured summaries in minutes, not weeks
-              </p>
-            </div>
+            
           </div>
 
           <p className="text-lg leading-relaxed mb-8">
@@ -500,25 +500,25 @@ const BlogPost: React.FC<BlogPostProps> = ({ onBack }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                icon: <Shield size={24} />,
+                icon: <Shield size={24} aria-label="Data Protection" />,
                 title: "Data Protection",
                 description: "AES-256 encryption for data at rest and in transit, with secure key management",
                 gradient: "from-indigo-500 to-purple-500"
               },
               {
-                icon: <Database size={24} />,
+                icon: <Database size={24} aria-label="Access Control" />,
                 title: "Access Control",
                 description: "Role-based permissions with principle of least privilege enforcement",
                 gradient: "from-blue-500 to-cyan-500"
               },
               {
-                icon: <Award size={24} />,
+                icon: <Award size={24} aria-label="Compliance" />,
                 title: "Compliance",
                 description: "HIPAA and SOC 2 compliance with regular security audits and penetration testing",
                 gradient: "from-emerald-500 to-teal-500"
               },
               {
-                icon: <TrendingUp size={24} />,
+                icon: <TrendingUp size={24} aria-label="Monitoring" />,
                 title: "Monitoring",
                 description: "Real-time security monitoring with automated threat detection and response",
                 gradient: "from-orange-500 to-amber-500"
@@ -527,10 +527,12 @@ const BlogPost: React.FC<BlogPostProps> = ({ onBack }) => {
               <div key={index} className={`group p-6 rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-105 ${
                 isDark ? 'bg-gray-900/50 border border-gray-700/50' : 'bg-gray-50 border border-gray-200/50'
               }`}>
-                <div className={`p-3 rounded-xl bg-gradient-to-r ${feature.gradient} text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  {feature.icon}
+                <div className="flex items-center mb-4">
+                  <div className={`p-3 rounded-xl bg-gradient-to-r ${feature.gradient} text-white mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    {feature.icon}
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white">{feature.title}</h4>
                 </div>
-                <h4 className="text-lg font-bold mb-3 text-gray-900 dark:text-white">{feature.title}</h4>
                 <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
               </div>
             ))}
@@ -540,7 +542,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ onBack }) => {
         {/* Performance Metrics */}
         <section className={`p-8 rounded-2xl mb-12 ${isDark ? 'bg-gray-800/50 border border-gray-700/50' : 'bg-white border border-gray-200/50'} shadow-xl`}>
           <h2 className="text-3xl font-bold mb-6 flex items-center">
-            <span className="text-3xl mr-3">⚡</span>
+            {/* <span className="text-3xl mr-3">⚡</span> */}
             Performance Excellence: Engineering for Scale
           </h2>
           <p className="text-lg leading-relaxed mb-8">
