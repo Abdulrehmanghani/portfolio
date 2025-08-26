@@ -24,10 +24,10 @@ import {
   Menu,
   X,
   Briefcase,
-  Target,
-  Zap,
-  Globe
+  MessageSquare,
+  Sparkles
 } from 'lucide-react';
+import BlogPost from './components/BlogPost';
 
 interface ThemeContextType {
   isDark: boolean;
@@ -43,6 +43,7 @@ function App() {
   const [isDark, setIsDark] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showBlogPost, setShowBlogPost] = useState(false);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -79,24 +80,28 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-      <div className={`min-h-screen transition-colors duration-500 ${
-        isDark ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'
-      }`}>
-        <Navigation 
-          activeSection={activeSection} 
-          scrollToSection={scrollToSection}
-          isMenuOpen={isMenuOpen}
-          setIsMenuOpen={setIsMenuOpen}
-        />
-        <HeroSection scrollToSection={scrollToSection} />
-        <AboutSection />
-        <SkillsSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <EducationSection />
-        <CertificationsSection />
-        <ContactSection />
-      </div>
+      {showBlogPost ? (
+        <BlogPost onBack={() => setShowBlogPost(false)} />
+      ) : (
+        <div className={`min-h-screen transition-colors duration-500 ${
+          isDark ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'
+        }`}>
+          <Navigation 
+            activeSection={activeSection} 
+            scrollToSection={scrollToSection}
+            isMenuOpen={isMenuOpen}
+            setIsMenuOpen={setIsMenuOpen}
+          />
+          <HeroSection scrollToSection={scrollToSection} />
+          <AboutSection />
+          <SkillsSection />
+          <ExperienceSection />
+          <ProjectsSection onOpenBlog={() => setShowBlogPost(true)} />
+          <EducationSection />
+          <CertificationsSection />
+          <ContactSection />
+        </div>
+      )}
     </ThemeContext.Provider>
   );
 }
@@ -300,34 +305,29 @@ function HeroSection({ scrollToSection }: { scrollToSection: (sectionId: string)
                 icon={<Mail />} 
                 value="abdulrehmanghani197@gmail.com" 
                 href="mailto:abdulrehmanghani197@gmail.com" 
-                compact 
                 className="hover:-translate-y-1 transition-transform duration-200"
               />
               <ContactCard 
                 icon={<Phone />} 
                 value="+92-341-7528497" 
                 href="tel:+923417528497" 
-                compact
                 className="hover:-translate-y-1 transition-transform duration-200"
               />
               <ContactCard 
                 icon={<MapPin />} 
                 value="Islamabad, Pakistan" 
-                compact
                 className="hover:-translate-y-1 transition-transform duration-200"
               />
               <ContactCard 
                 icon={<Linkedin />} 
                 value="linkedin.com/in/abdulrehman197" 
                 href="https://linkedin.com/in/abdulrehman197" 
-                compact
                 className="hover:-translate-y-1 transition-transform duration-200"
               />
               <ContactCard 
                 icon={<Github />} 
                 value="github.com/Abdulrehmanghani" 
                 href="https://github.com/Abdulrehmanghani" 
-                compact
                 className="hover:-translate-y-1 transition-transform duration-200"
               />
             </div>
@@ -337,11 +337,10 @@ function HeroSection({ scrollToSection }: { scrollToSection: (sectionId: string)
   );
 }
 
-function ContactCard({ icon, value, href, compact, className }: { 
+function ContactCard({ icon, value, href, className }: { 
   icon: React.ReactNode; 
   value: string; 
   href?: string; 
-  compact?: boolean; 
   className?: string;
 }) {
   const { isDark } = useContext(ThemeContext);
@@ -377,23 +376,7 @@ function ContactCard({ icon, value, href, compact, className }: {
 function AboutSection() {
   const { isDark } = useContext(ThemeContext);
 
-  const highlights = [
-    {
-      icon: <Target className="w-8 h-8" />,
-      title: "Mission-Driven",
-      description: "Building AI solutions that create measurable real-world impact"
-    },
-    {
-      icon: <Zap className="w-8 h-8" />,
-      title: "Innovation Focus",
-      description: "Pushing boundaries in computer vision and edge computing"
-    },
-    {
-      icon: <Globe className="w-8 h-8" />,
-      title: "Global Perspective",
-      description: "Working across industries and geographies to solve complex challenges"
-    }
-  ];
+
 
   return (
     <section id="about" className={`py-20 ${isDark ? 'bg-gray-800' : 'bg-white'}`}>
@@ -462,47 +445,58 @@ function SkillsSection() {
       ]
     },
     {
-      title: "Machine Learning & AI",
-      icon: <Brain />,
+      title: "Computer Vision",
+      icon: <Camera />,
       gradient: "from-indigo-500 to-purple-500",
       skills: [
-        { name: "PyTorch", level: 90 },
-        { name: "TensorFlow", level: 85 },
-        { name: "Scikit-learn", level: 80 },
-        { name: "OpenCV", level: 90 }
+        { name: "Object Detection (YOLO, DETR, Faster R-CNN)", level: 92 },
+        { name: "Segmentation (HRNet, FCHarDNet, U-Net)", level: 90 },
+        { name: "Re-ID & Tracking", level: 88 },
+        { name: "OpenCV / NVIDIA DeepStream", level: 90 }
       ]
     },
     {
-      title: "Cloud & DevOps",
-      icon: <Cloud />,
-      gradient: "from-blue-500 to-cyan-500",
+      title: "Natural Language Processing (NLP)",
+      icon: <MessageSquare />,
+      gradient: "from-green-500 to-emerald-500",
       skills: [
-        { name: "Azure", level: 75 },
-        { name: "AWS", level: 70 },
-        { name: "Docker", level: 80 },
-        { name: "Kubernetes", level: 65 }
+        { name: "Transformers (BERT, GPT, LLaMA)", level: 85 },
+        { name: "RAG Architectures", level: 80 },
+        { name: "Text Summarization & Document Automation", level: 85 },
+        { name: "LangChain & Vector Databases", level: 80 }
       ]
     },
     {
-      title: "Edge & Embedded Systems",
+      title: "Generative AI & LLMs",
+      icon: <Sparkles />,
+      gradient: "from-fuchsia-500 to-pink-500",
+      skills: [
+        { name: "Prompt Engineering", level: 85 },
+        { name: "Fine-tuning LLMs", level: 80 },
+        { name: "Diffusion Models (Stable Diffusion)", level: 75 },
+        { name: "Conversational AI / Agents", level: 80 }
+      ]
+    },
+    {
+      title: "Edge & Optimization",
       icon: <Cpu />,
-      gradient: "from-green-500 to-teal-500",
+      gradient: "from-teal-500 to-cyan-500",
       skills: [
-        { name: "NVIDIA Jetson", level: 85 },
-        { name: "Raspberry Pi", level: 80 },
-        { name: "Edge TPU", level: 70 },
-        { name: "TinyML", level: 75 }
+        { name: "NVIDIA Jetson / TensorRT", level: 88 },
+        { name: "CUDA / GPU Optimization", level: 82 },
+        { name: "Quantization & Pruning", level: 90 },
+        { name: "TinyML (OpenMV, ESP32, Edge Impulse)", level: 75 }
       ]
     },
     {
-      title: "Data Engineering",
-      icon: <Database />,
-      gradient: "from-violet-500 to-purple-500",
+      title: "Cloud & MLOps",
+      icon: <Cloud />,
+      gradient: "from-blue-500 to-sky-500",
       skills: [
-        { name: "SQL", level: 75 },
-        { name: "NoSQL", level: 70 },
-        { name: "ETL Pipelines", level: 80 },
-        { name: "Apache Airflow", level: 65 }
+        { name: "Azure ML / AWS Sagemaker", level: 80 },
+        { name: "Docker & Kubernetes", level: 78 },
+        { name: "Apache Airflow", level: 70 },
+        { name: "Triton Inference Server", level: 82 }
       ]
     },
     {
@@ -510,22 +504,13 @@ function SkillsSection() {
       icon: <Bot />,
       gradient: "from-orange-500 to-amber-500",
       skills: [
-        { name: "MLOps", level: 75 },
-        { name: "FastAPI", level: 80 },
-        { name: "LangChain", level: 70 },
-        { name: "RAG", level: 65 }
+        { name: "End-to-End ML Pipelines", level: 85 },
+        { name: "FastAPI / REST APIs", level: 80 },
+        { name: "Experiment Tracking (W&B)", level: 75 },
+        { name: "Production Deployment", level: 85 }
       ]
     }
   ];
-
-  // Add this to your global CSS
-  const styles = `
-  @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  `;
 
   return (
     <section id="skills" className={`py-20 ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
@@ -689,7 +674,7 @@ function ExperienceSection() {
               key={index}
               className={`group p-8 rounded-2xl transition-all duration-500 hover:shadow-2xl hover:scale-102 ${
                 isDark ? 'bg-gray-800/50 border border-gray-700/50' : 'bg-white border border-gray-200/50'
-              } ${exp.roles.some(r => r.current) ? 'ring-2 ring-indigo-500/30' : ''}`}
+              } ${exp.roles.some(r => (r as any).current) ? 'ring-2 ring-indigo-500/30' : ''}`}
             >
               {/* Company header */}
               <div className="flex items-center mb-6">
@@ -704,7 +689,7 @@ function ExperienceSection() {
                 {exp.roles.map((role, rIndex) => (
                   <div
                     key={rIndex}
-                    className={`grid grid-cols-1 lg:grid-cols-3 gap-8 pl-8 relative ${role.extraSpacing ? 'mt-6' : ''}`}
+                    className={`grid grid-cols-1 lg:grid-cols-3 gap-8 pl-8 relative ${(role as any).extraSpacing ? 'mt-6' : ''}`}
                   >
                     {/* Timeline dot */}
                     <span className={`absolute left-0 top-2 w-4 h-4 rounded-full bg-gradient-to-r ${exp.gradient}`}></span>
@@ -716,7 +701,7 @@ function ExperienceSection() {
                     {/* Left column */}
                     <div className="lg:col-span-1">
                       <p className="text-lg font-semibold text-indigo-600 dark:text-indigo-400 mb-2">{role.title}</p>
-                      {role.current && (
+                      {(role as any).current && (
                         <span className="px-2 py-0.5 text-xs bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full">
                           Current
                         </span>
@@ -756,7 +741,7 @@ function ExperienceSection() {
 }
 
 
-function ProjectsSection() {
+function ProjectsSection({ onOpenBlog }: { onOpenBlog: () => void }) {
   const { isDark } = useContext(ThemeContext);
 
   const projects = [
@@ -771,25 +756,26 @@ function ProjectsSection() {
       repoUrl: "https://github.com/Abdulrehmanghani/Accelerate-the-inference-at-edge/tree/main"
     },
     {
-      title: "GPT-4 Medical Record Summarization",
-      description: "Developed an intelligent healthcare automation system that processes and summarizes medical records using GPT-4. Reduced manual processing time by 80% for healthcare providers.",
-      tech: ["GPT-4", "NLP", "Healthcare AI", "Python", "FastAPI"],
+      title: "Medical Record Summarization",
+      description: "Developed an intelligent healthcare automation system that processes and summarizes medical records using GPT-4. Reduced manual processing time by 80% for healthcare providers. Built a scalable SaaS platform with subscription-based pricing that serves law firms and healthcare organizations through automated document processing workflows.",
+      tech: ["GPT-4", "Google Gemini", "Healthcare AI", "Python", "FastAPI", "AWS"],
       icon: <Brain />,
       category: "Healthcare AI",
       gradient: "from-rose-500 to-pink-500",
       // gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
-      repoStatus: "This project is not Open-source"
+      repoStatus: "This project is not Open-source",
+      hasBlogPost: true
     },
-    {
-      title: "Legal Document Automation Pipeline",
-      description: "Built an AI-powered solution for legal document processing, analysis, and automated workflow generation using LLaMA and RAG architecture. Streamlined legal operations for multiple law firms.",
-      tech: ["LLaMA", "Document AI", "RAG", "LangChain", "Vector DB"],
-      icon: <Database />,
-      category: "Legal Tech",
-      gradient: "from-indigo-500 to-purple-500",
-      // gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
-      repoStatus: "This project is not Open-source"
-    },
+    // {
+    //   title: "Legal Document Automation Pipeline",
+    //   description: "Built an AI-powered solution for legal document processing, analysis, and automated workflow generation using LLaMA and RAG architecture. Streamlined legal operations for multiple law firms.",
+    //   tech: ["LLaMA", "Document AI", "RAG", "LangChain", "Vector DB"],
+    //   icon: <Database />,
+    //   category: "Legal Tech",
+    //   gradient: "from-indigo-500 to-purple-500",
+    //   // gif: "public/project-media/Accelerate-the-inference-at-edge.gif", // replace with actual GIF
+    //   repoStatus: "This project is not Open-source"
+    // },
     {
       title: "Edge-Based Person Re-Identification System",
       description: "Developed and deployed a real-time person re-identification system using Raspberry Pi and Intel Neural Compute Stick 2. Integrates deep learning models for feature extraction and matching at the edge, enabling efficient and low-latency identification for surveillance and security applications.",
@@ -922,23 +908,36 @@ function ProjectsSection() {
                   ))}
                 </div>
 
-                {/* Repository Status or GitHub Link */}
-                {project.repoStatus ? (
-                  <div className="text-sm text-gray-500 dark:text-gray-400 italic">
-                    {project.repoStatus}
-                  </div>
-                ) : project.repoUrl ? (
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow hover:scale-105 transition-transform duration-200"
-                  >
-                    <Github size={18} className="mr-2" />
-                    View Code on GitHub
-                    <ChevronRight size={16} className="ml-1" />
-                  </a>
-                ) : null}
+                {/* Repository Status, GitHub Link, or Blog Post */}
+                <div className="space-y-3">
+                  {project.hasBlogPost && (
+                    <button
+                      onClick={onOpenBlog}
+                      className="w-full inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-semibold bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow hover:scale-105 transition-transform duration-200"
+                    >
+                      <Brain size={18} className="mr-2" />
+                      Read Project Details
+                      <ChevronRight size={16} className="ml-1" />
+                    </button>
+                  )}
+                  
+                  {project.repoStatus ? (
+                    <div className="text-sm text-gray-500 dark:text-gray-400 italic">
+                      {project.repoStatus}
+                    </div>
+                  ) : project.repoUrl ? (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow hover:scale-105 transition-transform duration-200"
+                    >
+                      <Github size={18} className="mr-2" />
+                      View Code on GitHub
+                      <ChevronRight size={16} className="ml-1" />
+                    </a>
+                  ) : null}
+                </div>
               </div>
             </div>
           ))}
@@ -996,7 +995,7 @@ function EducationSection() {
       status: "In Progress",
       description: "Advanced studies in AI, machine learning, and computational intelligence with focus on cutting-edge research.",
       gradient: "from-indigo-500 to-purple-500",
-      year: "2024-2026"
+      year: "2025-2027"
     },
     {
       degree: "B.S. in Computer Engineering",
