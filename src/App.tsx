@@ -315,7 +315,7 @@ function HeroSection({ scrollToSection }: { scrollToSection: (sectionId: string)
               />
               <ContactCard 
                 icon={<MapPin />} 
-                value="Islamabad, Pakistan" 
+                value="Nicosia, Cyprus" 
                 className="hover:-translate-y-1 transition-transform duration-200"
               />
               <ContactCard 
@@ -995,7 +995,7 @@ function EducationSection() {
       status: "In Progress",
       description: "Advanced studies in AI, machine learning, and computational intelligence with focus on cutting-edge research.",
       gradient: "from-indigo-500 to-purple-500",
-      year: "2025-2027"
+      year: "2025-In progress"
     },
     {
       degree: "B.S. in Computer Engineering",
