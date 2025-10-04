@@ -392,9 +392,9 @@ function AboutSection() {
         <div className="text-center mb-16">
           <p className="text-xl md:text-2xl leading-relaxed text-gray-700 dark:text-gray-300 mb-8">
             Senior Machine Learning Engineer with <span className="font-bold text-indigo-600 dark:text-indigo-400">6+ years of experience</span> 
-            designing and deploying production-grade AI systems. Currently pursuing an M.S. in Artificial Intelligence at the 
-            <span className="font-semibold text-purple-600 dark:text-purple-400"> University of Cyprus</span> while working as a 
-            Computer Vision & ML Engineer at <span className="font-semibold text-blue-600 dark:text-blue-400">AIVStudios</span>.
+            designing and deploying production-grade AI systems. Currently pursuing M.S. in Artificial Intelligence at the 
+            <span className="font-semibold text-purple-600 dark:text-purple-400"> University of Cyprus</span> while working as a part time
+            AI & ML Engineer at <span className="font-semibold text-blue-600 dark:text-blue-400">LvisionAI</span>.
           </p>
           
           <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-400 mb-12">
