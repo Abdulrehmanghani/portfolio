@@ -576,7 +576,7 @@ function ExperienceSection() {
         {
           title: "Computer Vision & ML Engineer",
           period: "Jul 2024 – Present",
-          location: "Remote",
+          location: "Islamabad, Pakistan",
           description:
             "Building advanced AI platforms for healthcare, legal, and video analytics with LLMs and high-performance computer vision solutions.",
           achievements: [
@@ -589,11 +589,11 @@ function ExperienceSection() {
       ]
     },
     {
-      company: "LVisionAI",
+      company: "LVisionAI (Private limited)",
       gradient: "from-blue-500 to-cyan-500",
       roles: [
         {
-          title: "Machine Learning Engineer",
+          title: "AI & ML Engineer",
           period: "Dec 2022 – Jul 2024",
           location: "Islamabad, Pakistan",
           description:
@@ -607,11 +607,11 @@ function ExperienceSection() {
       ]
     },
     {
-      company: "DLision",
+      company: "DLision (Private limited)",
       gradient: "from-emerald-500 to-teal-500",
       roles: [
         {
-          title: "Software Developer",
+          title: "Machine Learning Engineer",
           period: "Mar 2021 – Nov 2022",
           location: "Islamabad, Pakistan",
           description:
@@ -623,7 +623,7 @@ function ExperienceSection() {
           ]
         },
         {
-          title: "Trainee Developer",
+          title: "Python Developer",
           period: "Jan 2020 – Feb 2021",
           location: "Islamabad, Pakistan",
           description:
