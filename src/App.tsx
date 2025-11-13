@@ -309,8 +309,8 @@ function HeroSection({ scrollToSection }: { scrollToSection: (sectionId: string)
               />
               <ContactCard 
                 icon={<Phone />} 
-                value="+92-341-7528497" 
-                href="tel:+923417528497" 
+                value="+357-95-949699" 
+                href="tel:+35795949699" 
                 className="hover:-translate-y-1 transition-transform duration-200"
               />
               <ContactCard 
